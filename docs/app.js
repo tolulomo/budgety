@@ -301,6 +301,8 @@ var appInit = (function(op, ap){
                 op.clear();
             }
         });
+
+        //Iniside the description box switcher
         document.querySelector(DOM.desc).addEventListener('keyup', function(e){
             if(e.keycode === 109 || e.keyCode === 189) {
                 document.querySelector(DOM.type).value = 'exp';
@@ -312,6 +314,20 @@ var appInit = (function(op, ap){
                 op.clear();  
             }
         });
+
+        //Outside the description box switcher
+        document.addEventListener('keyup', function(e){
+            if(e.keycode === 109 || e.keyCode === 189) {
+                document.querySelector(DOM.type).value = 'exp';
+                op.selection('exp');
+                op.clear();
+            } else if(e.keyCode === 107 || e.keyCode === 187){
+                document.querySelector(DOM.type).value = 'inc';
+                op.selection('inc');
+                op.clear();  
+            }
+        });
+
         // Use our detect's results. passive applied if supported, capture will be false either way.
         document.querySelector(DOM.type).addEventListener('change', op.selection, supportsPassive ? { passive: true } : false);
         document.querySelector(DOM.listcontainer).addEventListener('click', getDOMList)
